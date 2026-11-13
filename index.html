@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Welcome to Shravani's World 🌎 | 3D Interactive Story</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=Inter:wght@300;400;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- Full-Screen 3D Virtual Room Canvas -->
+  <canvas id="world-canvas"></canvas>
+
+  <!-- Top Minimal HUD Bar -->
+  <header class="hud-header">
+    <div class="brand">SHRAVANI'S <span>WORLD</span> 🌎</div>
+    <div class="hud-controls" id="quick-nav" style="display: none;">
+      <button class="nav-pill" data-open="laptop">💻 Projects</button>
+      <button class="nav-pill" data-open="book">📘 Education & Certs</button>
+      <button class="nav-pill" data-open="phone">📱 Contact</button>
+    </div>
+  </header>
+
+  <!-- Avatar Speech Bubble -->
+  <div id="speech-bubble">
+    <div class="typing-indicator">● ● ●</div>
+    <p id="speech-text">"Hey! I'm Shravani. Welcome to my world."</p>
+    <span id="speech-sub">Pull the glowing thread on the right to explore my story ✨</span>
+  </div>
+
+  <!-- Interactive Glowing Thread / Pull Cord -->
+  <div id="thread-wrapper" title="Drag down or click to reveal my world">
+    <div id="thread-line"></div>
+    <div id="thread-orb">
+      <span>PULL</span>
+    </div>
+  </div>
+
+  <!-- 3D Object Floating Labels (Appear after thread is pulled) -->
+  <div id="label-laptop" class="object-tag hidden" data-open="laptop">💻 AI Projects & Prompt Lab</div>
+  <div id="label-book" class="object-tag hidden" data-open="book">📘 Education & Oracle Certs</div>
+  <div id="label-phone" class="object-tag hidden" data-open="phone">📱 Contact & Socials</div>
+
+  <!-- ================= STORY MODAL 1: LAPTOP (PROJECTS & PROMPT LAB) ================= -->
+  <div id="modal-laptop" class="story-modal hidden">
+    <div class="modal-card">
+      <button class="close-btn" data-close>&times;</button>
+      <span class="badge">💻 AI OPERATIONS & PROMPT ENGINEERING PROJECTS</span>
+      <h2>My AI & Engineering Work</h2>
+
+      <div class="modal-grid">
+        <div class="info-box">
+          <div class="tag-top">Conversational AI & Healthcare</div>
+          <h3>AI Chatbot for Animal Disease Diagnosis</h3>
+          <p>
+            Built a Python/Flask diagnostic web app featuring an interactive symptom-triage chatbot, role-based admin management, and structured JSON diagnostic history logging.
+          </p>
+          <span class="tech">Python • Flask • LLM Prompting • JSON</span>
+        </div>
+
+        <div class="info-box">
+          <div class="tag-top">AI Cybersecurity & Governance</div>
+          <h3>Secure AI Model Monitor</h3>
+          <p>
+            Developed an output-auditing and guardrail monitoring layer to detect prompt injection attempts, PII leakage, and hallucination drift in real time.
+          </p>
+          <span class="tech">AI Security • Guardrails • Output Auditing</span>
+        </div>
+
+        <div class="info-box">
+          <div class="tag-top">3D WebGL & Prompt-Engineered UI</div>
+          <h3>Shravani's 3D Interactive World</h3>
+          <p>
+            Created this interactive 3D virtual room with Three.js raycasting, physics-driven thread controls, and a custom 3D avatar built via iterative prompt engineering.
+          </p>
+          <span class="tech">Three.js • JavaScript • WebGL • CSS3</span>
+        </div>
+      </div>
+
+      <div class="prompt-showcase">
+        <h4>⚡ Prompt Engineering Sample (Structured Triage & QA)</h4>
+        <pre><code>SYSTEM: You are a Veterinary Triage & QA Assistant. Analyze ONLY reported symptoms. Return valid JSON: {"conditions": [], "urgency": "Low|Medium|Emergency", "grounding_verified": true}.</code></pre>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= STORY MODAL 2: BOOK (EDUCATION & CERTIFICATIONS) ================= -->
+  <div id="modal-book" class="story-modal hidden">
+    <div class="modal-card">
+      <button class="close-btn" data-close>&times;</button>
+      <span class="badge">📘 ACADEMIC JOURNEY & VERIFIED CREDENTIALS</span>
+      <h2>Education & Oracle Certifications</h2>
+
+      <div class="edu-banner">
+        <h3>Bachelor of Engineering (B.E.) — 2027 Batch</h3>
+        <p><strong>East Point College of Engineering and Technology (EPCET)</strong> • Visvesvaraya Technological University (VTU)</p>
+        <p class="sub">Focusing on AI Operations, Prompt Engineering, Cybersecurity, and Full-Stack Development.</p>
+      </div>
+
+      <div class="modal-grid two-col">
+        <div class="info-box cert-highlight">
+          <div class="tag-top">Oracle Cloud Infrastructure (2025)</div>
+          <h3>Certified Generative AI Professional</h3>
+          <p>
+            Certified in Large Language Models (LLMs), prompt engineering architectures, Retrieval-Augmented Generation (RAG), and enterprise OCI GenAI deployment.
+          </p>
+        </div>
+
+        <div class="info-box cert-highlight">
+          <div class="tag-top">Oracle AI Certification</div>
+          <h3>Oracle AI Vector Search Certified Professional</h3>
+          <p>
+            Validated expertise in vector embeddings, semantic similarity indexing, and high-accuracy RAG pipelines for enterprise knowledge retrieval.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= STORY MODAL 3: PHONE (CONTACT DETAILS) ================= -->
+  <div id="modal-phone" class="story-modal hidden">
+    <div class="modal-card compact">
+      <button class="close-btn" data-close>&times;</button>
+      <span class="badge">📱 LET'S CONNECT</span>
+      <h2>Get in Touch with Shravani</h2>
+      <p class="contact-intro">Open to AI Operations, Prompt Engineering, and Software Engineering opportunities.</p>
+
+      <div class="contact-links">
+        <a href="mailto:shravanicheeky22@gmail.com" class="contact-item">
+          <span class="icon">✉️</span>
+          <div>
+            <strong>Email</strong>
+            <span>shravanicheeky22@gmail.com</span>
+          </div>
+        </a>
+
+        <a href="https://www.linkedin.com/in/shravani-c-307993318" target="_blank" class="contact-item">
+          <span class="icon">💼</span>
+          <div>
+            <strong>LinkedIn</strong>
+            <span>linkedin.com/in/shravani-c-307993318</span>
+          </div>
+        </a>
+
+        <a href="https://github.com/shravani-C22" target="_blank" class="contact-item">
+          <span class="icon">🐙</span>
+          <div>
+            <strong>GitHub</strong>
+            <span>github.com/shravani-C22</span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
